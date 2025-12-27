@@ -25,37 +25,37 @@ monitor=eDP-1,2560x1440@165,0x0,1.6
 `0x0`: 是坐标，建议使用`auto`参数
 `1.6`: 是缩放率,标准屏幕建议`1.25`，2.5k和4k屏幕建议`1.5`
 
-## 修复thunar的问题
+### 修复thunar的问题
 - 通过链接修复即可
 ```
 sudo ln -s /usr/bin/alacritty /usr/bin/gnome-terminal
 ```
 - 使用上面的命令修复即可，将终端模拟器链接伪装成`gnome-terminal`即可
-## 修复home目录下的目录
+### 修复home目录下的目录
 ```
 sudo pacman -S xdg-user-dirs
 ```
 输入`xdg-user-dirs-update`即可更新home下的目录
-## 蓝牙修复
+### 蓝牙修复
 ```
 sudo pacman -S --needed bluez blueman
 ```
 ```
 sudo systemctl enable --now bluetooth
 ```
-## 修复网络面板组件
+### 修复网络面板组件
 ```
 sudo pacman -S network-manager-applet dnsmasq
 ```
-## 安装yay助手
+### 安装yay助手
 ```
 pacman -S yay
 ```
-## 修复截图
+### 修复截图
 ```
 yay -S gradia slurp grim
 ```
-## 配置软件商店(可选)
+### 配置软件商店(可选)
 ```
 sudo pacman -S gnome-software flatpak
 ```
@@ -68,11 +68,11 @@ sudo flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/re
 #国内源
 sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
 ```
-## 安装输入法
+### 安装输入法
 ```
 sudo pacman -S fcitx5 fcitx5-rime fcitx5-chinese-addons fcitx5-configtool
 ```
-## 配置cava(可选)
+### 配置cava(可选)
 ```
 sudo pacman -S cava
 ```
