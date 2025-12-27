@@ -1,0 +1,122 @@
+/* Waybar样式 - CAVA集成版 */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(30, 30, 46, 0.85);  /* 半透明背景 */
+    color: #cdd6f4;
+    border-bottom: 1px solid #313244;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: #6c7086;
+    background: transparent;
+}
+
+#workspaces button.active {
+    color: #cba6f7;
+    background: rgba(203, 166, 247, 0.1);
+}
+
+#workspaces button:hover {
+    background: rgba(166, 227, 161, 0.1);
+    color: #a6e3a1;
+}
+/* ===== CAVA模块样式 ===== */
+#custom-cava {
+    padding: 0 10px;
+    margin: 0 5px;
+    background: rgba(17, 17, 27, 0.7);
+    border-radius: 5px;
+    color: #89b4fa;  /* 默认蓝色 */
+    font-weight: bold;
+    min-width: 140px;
+}
+
+#custom-cava:hover {
+    background: rgba(17, 17, 27, 0.9);
+    color: #f5c2e7;  /* 悬停粉色 */
+}
+
+/* 动态颜色变化（基于频谱活动） */
+#custom-cava.high {
+    color: #f38ba8;  /* 红色 - 高频活跃时 */
+}
+
+#custom-cava.medium {
+    color: #fab387;  /* 橙色 - 中频 */
+}
+
+#custom-cava.low {
+    color: #a6e3a1;  /* 绿色 - 低频 */
+}
+
+/* ===== 其他模块 ===== */
+#clock {
+    padding: 0 12px;
+    background: rgba(17, 17, 27, 0.7);
+    border-radius: 5px;
+}
+
+#pulseaudio {
+    padding: 0 10px;
+    background: rgba(17, 17, 27, 0.7);
+    border-radius: 5px;
+    color: #89b4fa;
+}
+
+#pulseaudio.muted {
+    color: #f38ba8;
+}
+
+#network {
+    padding: 0 10px;
+    background: rgba(17, 17, 27, 0.7);
+    border-radius: 5px;
+    color: #94e2d5;
+}
+
+#cpu, #memory {
+    padding: 0 8px;
+    background: rgba(17, 17, 27, 0.7);
+    border-radius: 5px;
+    color: #f9e2af;
+}
+
+#temperature {
+    padding: 0 8px;
+    background: rgba(17, 17, 27, 0.7);
+    border-radius: 5px;
+    color: #fab387;
+}
+
+#temperature.critical {
+    color: #f38ba8;
+}
+
+#battery {
+    padding: 0 10px;
+    background: rgba(17, 17, 27, 0.7);
+    border-radius: 5px;
+    color: #a6e3a1;
+}
+
+#battery.warning {
+    color: #f9e2af;
+}
+
+#battery.critical {
+    color: #f38ba8;
+}
+
+#tray {
+    padding: 0 8px;
+    background: rgba(17, 17, 27, 0.7);
+    border-radius: 5px;
+}

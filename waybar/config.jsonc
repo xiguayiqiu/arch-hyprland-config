@@ -1,0 +1,161 @@
+{
+    // Waybar 主配置 – 集成 CAVA + 网速 + 麦克风静音
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window",
+        "custom/cava"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "custom/net-speed",
+        "custom/mic-mute",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "battery",
+        "tray"
+    ],
+
+    // ===== CAVA =====
+    "custom/cava": {
+        "exec": "~/.config/waybar/scripts/cava.sh",
+        "format": "{}",
+        "return-type": "json",
+        "restart-interval": 5,
+        "on-click": "pavucontrol",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5",
+        "tooltip": true,
+        "tooltip-format": "音频频谱可视化"
+    },
+
+    // ===== 网速 =====
+    "custom/net-speed": {
+        "exec": "~/.config/waybar/scripts/net-speed.sh",
+        "format": " {}  {}",
+        "return-type": "json",
+        "interval": 1,
+        "tooltip-format": "实时网速"
+    },
+
+    // ===== 麦克风 =====
+    "custom/mic-mute": {
+        "exec": "~/.config/waybar/scripts/mic-mute.sh",
+        "format": "{}",
+        "return-type": "json",
+        "interval": 1,
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle && ~/.config/waybar/scripts/mic-mute.sh",
+        "tooltip-format": "点击切换麦克风静音"
+    },
+
+    // ===== 工作区 =====
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "󰈹",
+            "2": "󰖟",
+            "3": "󰙯",
+            "4": "󰉋",
+            "5": "󰈆",
+            "6": "󰭹",
+            "7": "󱊢",
+            "8": "󰺵",
+            "9": "󰞷",
+            "10": "󰗮"
+        },
+        "on-click": "activate"
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "separate-outputs": true,
+        "max-length": 50
+    },
+
+    // ===== 中心时钟 =====
+    "clock": {
+        "format": "{:%Y-%m-%d %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%H:%M}"
+    },
+
+    // ===== 音量 =====
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁 {volume}%",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "󰋎",
+            "portable": "󰋎",
+            "car": "󰋎",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol",
+        "scroll-step": 5
+    },
+
+    // ===== 网络 =====
+    "network": {
+        "format-wifi": "󰖩 {essid}",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    // ===== 系统信息 =====
+    "cpu": {
+        "format": "󰍛 {usage}%",
+        "interval": 5,
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+
+    "memory": {
+        "format": "󰍛 {}%",
+        "interval": 5,
+        "format-alt": "󰍛 {used}/{total}",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+    },
+
+    "temperature": {
+        "format": " {temperatureC}°C",
+        "critical-threshold": 80,
+        "interval": 5,
+        "hwmon-path-abs": "/sys/class/hwmon/hwmon2/temp1_input"
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-alt": "{time}",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-full": "󰁹 {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "interval": 5
+    },
+
+    "tray": {
+        "spacing": 8,
+        "icon-size": 16
+    }
+}

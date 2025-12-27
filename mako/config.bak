@@ -1,0 +1,30 @@
+#------ 基础 ------
+font=Noto Sans 10
+width=380
+margin=20                 
+padding=12                
+border-size=2
+icons=1
+max-icon-size=48
+default-timeout=5000
+
+#------ 颜色（Tokyo-Night 暗色半透明）------
+background-color=#1a1b26e6
+text-color=#c0caf5
+border-color=#7aa2f7
+
+#------ 按紧急度微调 ------
+[urgency=low]
+background-color=#1a1b26cc
+text-color=#9abdfa
+
+[urgency=normal]
+background-color=#1a1b26e6
+text-color=#c0caf5
+
+[urgency=critical]
+background-color=#bb2a2ae6
+text-color=#ffffff
+border-color=#f7768e
+default-timeout=0          
+

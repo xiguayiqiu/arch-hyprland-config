@@ -1,0 +1,82 @@
+# ====================================================
+# CAVA 完整配置 (v0.10.6) - 稳定优化版
+# 核心目标：避免卡死，提供完整功能框架
+# 配置文件路径： ~/.config/cava/config
+# ====================================================
+
+[general]
+# 基础参数 - 调整此处可平衡性能与效果
+bars = 16             # 频谱条数量。在Waybar中建议12-20，过多可能导致卡顿
+framerate = 30        # ★★★ 关键：帧率。卡死时优先降低此值（可试25或20） ★★★
+autosens = 1          # 自动灵敏度调整（推荐开启）
+sensitivity = 100     # 基础灵敏度（autosens=0时生效，值越小越敏感）
+overshoot = 20        # 防止灵敏度过高导致频谱“炸开”
+
+[input]
+# ★★★ 音频输入 - 卡死最常见原因！必须正确设置 ★★★
+# 先用命令确定你的音频系统：
+#   ps aux | grep -E "(pipewire|pulseaudio)" | grep -v grep
+# 常见结果与对应设置：
+#   /usr/bin/pipewire -> method = pipewire
+#   /usr/bin/pulseaudio -> method = pulse
+#   （都没有）-> method = alsa
+method = pulse        # 可选项：pipewire, pulse, alsa, fifo
+
+# 音频源（pulse/pipewire有效）。设为 auto 通常即可
+# 指定设备：使用 pactl list sources short 或 wpctl status 查看
+source = auto
+
+[output]
+# 输出方法（在终端独立运行cava时使用此部分）
+method = ncurses      # 终端中显示
+orientation = bottom  # 方向：bottom（从下向上）, top（从上向下）
+visualizers = 1       # 同时显示的视觉样式数量（通常为1）
+
+[smoothing]
+# 平滑处理 - 影响流畅度与CPU占用
+# 噪声抑制 (0-1)：值越高越平滑但延迟越高，卡死时可先降至0.3
+noise_reduction = 0.6
+# 积分器效果 (0-99)：产生“瀑布”拖尾效果，0为关闭
+integral = 0
+# 怪物猫风格平滑 (0-1)：独特的动态平滑算法
+monstercat = 0
+# 滑动窗口平滑 (0-1)：另一种平滑方式
+sgs = 0
+
+[color]
+# 颜色配置 - 此部分在Waybar中可能不生效（Waybar有自己的样式控制）
+# 颜色模式：normal, gradient, fixed, alternating
+color_mode = gradient
+# 前景色（终端中独立运行cava时使用）
+foreground = '#00ff00'
+# 背景色（通常设置为default或黑色）
+background = default
+# 渐变颜色（当color_mode = gradient时生效）
+gradient_color_1 = '#00ff00'  # 低音颜色
+gradient_color_2 = '#ff0000'  # 高音颜色
+gradient_count = 4            # 渐变阶梯数
+
+[eq]
+# 频谱均衡器 - 调整不同频段的权重（1.0为原始值）
+# 调整原则：值>1增强该频段，<1减弱
+1 = 1.0  # 超低音 (0-50Hz)
+2 = 1.0  # 低音 (50-250Hz)
+3 = 1.0  # 中音 (250-2kHz)
+4 = 1.0  # 中高音 (2k-8kHz)
+5 = 1.0  # 高音 (8k+ Hz)
+
+[advanced]
+# 高级参数 - 除非了解其作用，否则不建议修改
+# 频率截止点（Hz）：忽略此范围外的频率
+lower_cutoff_freq = 50     # 最低显示频率
+higher_cutoff_freq = 10000 # 最高显示频率
+# 缓冲大小：影响响应速度，默认即可
+buffer_size = 1024
+# 立体声模式：1=左右声道分开显示，0=合并显示
+stereo = 1
+# 反转频谱：1=从高到低显示
+reverse = 0
+# 波形模式：模拟示波器效果
+waves = 0
+# 频谱条间隔 (0-1)
+bar_delimiter = 0
