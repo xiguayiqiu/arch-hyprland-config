@@ -72,6 +72,13 @@ sudo flatpak remote-modify flathub --url=https://mirror.sjtu.edu.cn/flathub
 ```
 sudo pacman -S fcitx5 fcitx5-rime fcitx5-chinese-addons fcitx5-configtool
 ```
+### 触控板配置
+- 使用hyprctl查询设备
+- `hyprctl devices`命令即可查询到您的硬件设备
+```
+exec-once = hyprctl keyword "device[触控板设备ID]:enabled" false
+```
+
 ### 配置cava(可选)
 ```
 sudo pacman -S cava
